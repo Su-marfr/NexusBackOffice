@@ -1,12 +1,12 @@
-
 body {
     font-family: system-ui, sans-serif;
     margin: 0;
-    background-color: #fefefe;
+    /*background-color: #fefefe*/
+    ;
 }
 
 .header-title {
-    color:#261854;
+    color: #261854;
     padding: 10px;
 }
 
@@ -34,17 +34,24 @@ body {
 .subheader-child {
     margin: 0;
 }
+
 .add {
-    display:inline-block;
+    display: inline-block;
     padding: 10px 15px;
     border-radius: 10px;
-    border-width: 0cap;
+    border: none;
     text-decoration: none;
     background-color: #261854;
-    color:#fefefe;
+    color: #fefefe;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+    cursor: pointer;
+}
+
+.add:active {
+    background: rgb(237, 235, 243);
+    color: #261854;
 }
 
 .table {
@@ -53,19 +60,23 @@ body {
 }
 
 .table thead {
-    background-color:rgb(237, 235, 243) ;
+    background-color: rgb(237, 235, 243);
 }
+
 .table th {
     text-align: left;
 }
-.table th, .table td {
-    border-bottom: 1px solid rgb(255, 56, 60);
+
+.table th,
+.table td {
+    /* border-bottom: 1px solid rgb(255, 56, 60); */
+    padding: 10px;
 }
 
 .capacity-container {
     display: flex;
     align-items: center;
-    gap: 8px; 
+    gap: 8px;
 }
 
 .capacity-number {
@@ -79,7 +90,7 @@ body {
     border-radius: 20px;
     font-size: 12px;
     font-weight: bold;
-    color:rgb(254, 254, 254);
+    color: rgb(254, 254, 254);
     text-align: center;
 }
 
@@ -91,3 +102,23 @@ body {
     background-color: rgb(255, 56, 60);
 }
 
+.icon-button-container {
+    display: flex;
+    text-align: center;
+}
+
+.icon-button {
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.icon-button:active {
+
+    color: #261854;
+    transform: scale(1.3);
+}

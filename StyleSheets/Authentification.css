@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    margin-bottom: 35px;
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    display: block;
+    width: 580px;
+    height: 60px;
+    text-indent: 10px;
+    -webkit-appearance: none;
+    border: 1px solid #261854;
+    border-radius: 12px;
+}
+
+input::placeholder {
+    color: rgba(61, 17, 154, 0.51);
+}
+
+/* permet d'enlever la bordure bleu au clic d'un textField*/
+input:focus {
+    outline: none;
+}
+
+button {
+    display: block;
+    width: 335px;
+    height: 100px;
+    background-color: #261854;
+    border-radius: 32px;
+    border: none;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 96px;
+    font-weight: 400;
+    color: #261854;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #261854;
+}
+
+.textStyle {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #000;
+}
+
+.textButton h2 {
+color: #ffffff;
+}

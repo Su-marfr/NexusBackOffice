@@ -1,0 +1,124 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    /*background-color: #fefefe*/
+    ;
+}
+
+.header-title {
+    color: #261854;
+    padding: 10px;
+}
+
+.main-background {
+    background-color: rgb(237, 235, 243);
+    padding: 30px;
+    /* le padding pour créer de l'espace avec le workshops*/
+}
+
+.workshops-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.subheader-section {
+    /*border: 1px solid black;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.subheader-child {
+    margin: 0;
+}
+
+.add {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    background-color: #261854;
+    color: #fefefe;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add:active {
+    background: rgb(237, 235, 243);
+    color: #261854;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: rgb(237, 235, 243);
+}
+
+.table th {
+    text-align: left;
+}
+
+.table th,
+.table td {
+    /* border-bottom: 1px solid rgb(255, 56, 60); */
+    padding: 10px;
+}
+
+.capacity-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.capacity-number {
+    display: inline-block;
+    width: 50px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(254, 254, 254);
+    text-align: center;
+}
+
+.open {
+    background-color: rgb(52, 199, 80);
+}
+
+.full {
+    background-color: rgb(255, 56, 60);
+}
+
+.icon-button-container {
+    display: flex;
+    text-align: center;
+}
+
+.icon-button {
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.icon-button:active {
+
+    color: #261854;
+    transform: scale(1.3);
+}

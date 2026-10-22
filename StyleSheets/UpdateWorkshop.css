@@ -1,0 +1,121 @@
+.pop_up_edit_background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color:rgba(166, 231, 36, 0.677);
+    backdrop-filter: blur(1px);
+}
+
+.pop_up_edit_workshop {
+    position: relative;
+    width: 30vw;
+    height: 80vh;
+    padding: 24px;
+    background-color: white;
+    box-shadow: 0px 0px 15px 0px #000000;
+    color: #261854;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+.pop_up_edit_workshop .edit_workshop_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pop_up_edit_workshop .edit_workshop_header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pop_up_edit_workshop .onglets {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.pop_up_edit_workshop .onglet {
+    width: 45%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 24px;
+    background-color: #ececf2;
+    color: #261854;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pop_up_edit_workshop .onglet_actif {
+    background-color: #d9ccfa;
+}
+
+.pop_up_edit_workshop .champ {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.pop_up_edit_workshop label {
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.pop_up_edit_workshop input,
+.pop_up_edit_workshop select,
+.pop_up_edit_workshop textarea {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.pop_up_edit_workshop textarea {
+    height: 12vh;
+}
+
+.pop_up_edit_workshop .ligne_categorie {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pop_up_edit_workshop .ligne_date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pop_up_edit_workshop .hour_line {
+    display: flex;
+    gap: 8px;
+}
+
+.pop_up_edit_workshop .boutons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pop_up_edit_workshop .boutons button {
+    width: 45%;
+    padding: 12px 0;
+    border: none;
+    border-radius: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pop_up_edit_workshop .cancel {
+    background-color: #DFE1E5;
+    color: #727272;
+}
+
+.pop_up_edit_workshop .save {
+    background-color: #34c759;
+    color: white;
+}

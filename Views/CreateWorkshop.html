@@ -23,12 +23,13 @@
     <p>AHHHHH</p>
     <p>AHHHHH</p>
     <p>AHHHHH</p>
-    <div class="pop_up_background">
+    <button type="button" id="open_popup">Create Workshop</button>
+    <div class="pop_up_background" id="popup">
         <div class="pop_up_new_workshop">
 
             <section class="create_workshop_header">
                 <h2>Create New Workshop</h2>
-                <button type="button">X</button>
+                <button type="button" id="close_popup">X</button>
             </section>
 
             <form>
@@ -43,7 +44,7 @@
                         <option value="mangas">Mangas</option>
                         <option value="dessin">Dessin</option>
                         <option value="dedicace">Dédicace</option>
-                        <option value="mystery">Mystery</option>
+                        <option value="cosplay">Cosplay</option>
                     </select>
                 </section>
 
@@ -76,13 +77,15 @@
                 </section>
 
                 <section class="boutons">
-                    <button type="button" class="cancel">Cancel</button>
+                    <button type="button" class="cancel" id="cancel_popup">Cancel</button>
                     <button type="submit" class="save">Save</button>
                 </section>
             </form>
 
         </div>
     </div>
+    <script src="../JavaScript/CreateWorkshop.js"></script>
+
 </body>
 
 </html>

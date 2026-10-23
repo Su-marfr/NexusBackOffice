@@ -1,16 +1,16 @@
-const popup = document.getElementById("popup");
-const openButton = document.getElementById("open_popup");
-const closeButton = document.getElementById("close_popup");
-const cancelButton = document.getElementById("cancel_popup");
+const popup = document.querySelector("#popup");
+const openButton = document.querySelector("#open_popup");
+const closeButton = document.querySelector("#close_popup");
+const cancelButton = document.querySelector("#cancel_popup");
 
-function openPopup() {
-  popup.style.display = "flex";
-}
+openButton.addEventListener("click", () => {
+  popup.classList.add("ouvert");
+});
 
-function closePopup() {
-  popup.style.display = "none";
-}
+closeButton.addEventListener("click", () => {
+  popup.classList.remove("ouvert");
+});
 
-openButton.addEventListener("click", openPopup);
-closeButton.addEventListener("click", closePopup);
-cancelButton.addEventListener("click", closePopup);
+cancelButton.addEventListener("click", () => {
+  popup.classList.remove("ouvert");
+});

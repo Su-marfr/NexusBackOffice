@@ -1,17 +1,16 @@
-const popupEdit = document.getElementById("popup_edit");
-const openEditButton = document.getElementById("open_popup_edit");
-const closeEditButton = document.getElementById("close_popup_edit");
-const cancelEditButton = document.getElementById("cancel_popup_edit");
+const popupEdit = document.querySelector("#popup_edit");
+const openEditButton = document.querySelector("#open_popup_edit");
+const closeEditButton = document.querySelector("#close_popup_edit");
+const cancelEditButton = document.querySelector("#cancel_popup_edit");
 
-function openPopupEdit() {
-  popupEdit.style.display = "flex";
-}
+openEditButton.addEventListener("click", () => {
+  popupEdit.classList.add("ouvert");
+});
 
-function closePopupEdit() {
-  popupEdit.style.display = "none";
-}
+closeEditButton.addEventListener("click", () => {
+  popupEdit.classList.remove("ouvert");
+});
 
-openEditButton.addEventListener("click", openPopupEdit);
-closeEditButton.addEventListener("click", closePopupEdit);
-cancelEditButton.addEventListener("click", closePopupEdit);
-
+cancelEditButton.addEventListener("click", () => {
+  popupEdit.classList.remove("ouvert");
+});

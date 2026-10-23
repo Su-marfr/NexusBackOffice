@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../StyleSheets/UpdateWorkshop.css">
+</head>
+
+<body>
+    <button type="button" id="open_popup_edit">Edit Workshop</button>
+    <div class="pop_up_edit_background" id="popup_edit">
+        <div class="pop_up_edit_workshop">
+
+            <section class="edit_workshop_header">
+                <h2>Edit Workshop</h2>
+                <button type="button" id="close_popup_edit">X</button>
+            </section>
+
+            <section class="onglets">
+                <button type="button" class="onglet onglet_actif">Information</button>
+                <button type="button" class="onglet" id="">Attendees</button>
+            </section>
+
+            <form>
+                <section class="champ">
+                    <label for="edit_title">Title</label>
+                    <input type="text" id="edit_title" name="title" value="Lightsaber Combat">
+                </section>
+
+                <section class="ligne_categorie">
+                    <section class="champ">
+                        <label for="edit_category">Category</label>
+                        <select id="edit_category" name="category">
+                            <option value="mangas">Mangas</option>
+                            <option value="dessin">Dessin</option>
+                            <option value="dedicace">Dédicace</option>
+                            <option value="cosplay">Cosplay</option>
+                        </select>
+                    </section>
+
+                    <section class="champ">
+                        <label for="edit_capacity">Max Capacity</label>
+                        <input type="number" id="edit_capacity" name="capacity" value="20">
+                    </section>
+                </section>
+
+                <section class="ligne_date">
+                    <section class="champ">
+                        <label for="edit_date">Date</label>
+                        <input type="date" id="edit_date" name="date" value="2026-10-12">
+                    </section>
+
+                    <section class="hour_line">
+                        <section class="champ">
+                            <label for="edit_start">Start Time</label>
+                            <input type="time" id="edit_start" name="start" value="10:00" step="1800" required>
+                        </section>
+                        <section class="champ">
+                            <label for="edit_end">End Time</label>
+                            <input type="time" id="edit_end" name="end" value="11:30" step="1800" required>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- <section class="champ">
+                    <label for="edit_location">Location</label>
+                    <input type="text" id="edit_location" name="location" value="Room B - Creative Studio">
+                </section> -->
+
+                <section class="champ">
+                    <label for="edit_description">Description</label>
+                    <textarea id="edit_description" name="description"></textarea>
+                </section>
+
+                <section class="boutons">
+                    <button type="button" class="cancel" id="cancel_popup_edit">Cancel</button>
+                    <button type="submit" class="save">Save Changes</button>
+                </section>
+            </form>
+        </div>
+    </div>
+    <script src="../JavaScript/UpdateWorkshop.js"></script>
+</body>
+</html>

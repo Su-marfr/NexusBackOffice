@@ -13,7 +13,7 @@ body {
 
 section {
     margin-bottom: 35px;
-    
+
 }
 
 label {
@@ -50,6 +50,12 @@ button {
     margin: auto;
 }
 
+#errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
+}
+
 h1 {
     font-family: 'Anton', sans-serif;
     font-size: 96px;
@@ -75,5 +81,5 @@ h2 {
 }
 
 .buttonContinue h2 {
-color: #ffffff;
+    color: #ffffff;
 }

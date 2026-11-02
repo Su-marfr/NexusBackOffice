@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="..." />
     <link rel="stylesheet" href="../StyleSheets/WorkshopsMasterList.css" />
+    <link rel="stylesheet" href="../StyleSheets/UpdateWorkshop.css" />
+    <link rel="stylesheet" href="../StyleSheets/CreateWorkshop.css" />
     <script src="../JavaScript/WorkshopsMasterList.js" defer></script>
 </head>
 
@@ -34,114 +36,140 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Intro to Manga Drawing</td>
-                        <td>Manga</td>
-                        <td>10:00</td>
-                        <td>11:30</td>
-                        <td>
-                            <div class="capacity-container">
-                                <div class="capacity-number">
-                                    25/30
-                                </div>
-                                <span class="status-badge open">Open</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="icon-button-container">
-                                <button class="icon-button edit-button" type="button">
-                                    <img src="../Images/pencil.svg" alt="Pencil">
-                                </button>
-                                <button class="icon-button delete-button" type="button">
-                                    <img src="../Images/trash.svg" alt="Trash">
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Lightsaber Combat</td>
-                        <td>Sci-Fi</td>
-                        <td>10:00</td>
-                        <td>11:30</td>
-                        <td>
-                            <div class="capacity-container">
-                                <div class="capacity-number">
-                                    20/20
-                                </div>
-                                <span class="status-badge full">Full</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="icon-button-container">
-                                <button class="icon-button edit-button" type="button">
-                                    <img src="../Images/pencil.svg" alt="Pencil">
-                                </button>
-                                <button class="icon-button delete-button" type="button">
-                                    <img src="../Images/trash.svg" alt="Trash">
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pop Quiz: 90s Games</td>
-                        <td>Gaming</td>
-                        <td>14:00</td>
-                        <td>15:00</td>
-                        <td>
-                            <div class="capacity-container">
-                                <div class="capacity-number">
-                                    25/40
-                                </div>
-                                <span class="status-badge open">Open</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="icon-button-container">
-                                <button class="icon-button edit-button" type="button">
-                                    <img src="../Images/pencil.svg" alt="Pencil">
-                                </button>
-                                <button class="icon-button delete-button" type="button">
-                                    <img src="../Images/trash.svg" alt="Trash">
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Cosplay Crafting: EVA Foam Basics</td>
-                        <td>Cosplay</td>
-                        <td>14:30</td>
-                        <td>17:00</td>
-                        <td>
-                            <div class="capacity-container">
-                                <div class="capacity-number">
-                                    4/12
-                                </div>
-                                <span class="status-badge open">Open</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="icon-button-container">
-                                <button class="icon-button edit-button" type="button">
-                                    <img src="../Images/pencil.svg" alt="Pencil">
-                                </button>
-                                <button class="icon-button delete-button" type="button">
-                                    <img src="../Images/trash.svg" alt="Trash">
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
+                <tbody id="workshops-body">
                 </tbody>
             </table>
 
+            <p id="listErrorMessage"></p>
 
         </section>
 
-
-
     </main>
+
+    <!-- ********************************************** POPUP EDIT ********************************************** -->
+
+    <div class="pop_up_edit_background" id="popup_edit">
+        <div class="pop_up_edit_workshop">
+
+            <section class="edit_workshop_header">
+                <h2>Edit Workshop</h2>
+                <button type="button" id="close_popup_edit">X</button>
+            </section>
+
+            <section class="onglets">
+                <button type="button" class="onglet onglet_actif">Information</button>
+                <button type="button" class="onglet">Attendees</button>
+            </section>
+
+            <form class="edit_workshop_form" id="edit_workshop_form">
+                <section class="champ">
+                    <label for="edit_name">Title</label>
+                    <input type="text" id="edit_name" name="title">
+                </section>
+
+                <section class="ligne_categorie">
+                    <section class="champ">
+                        <label for="edit_category">Category</label>
+                        <select id="edit_category" name="category"></select>
+                    </section>
+
+                    <section class="champ">
+                        <label for="edit_capacity">Max Capacity</label>
+                        <input type="number" id="edit_capacity" name="capacity">
+                    </section>
+                </section>
+
+                <section class="ligne_date">
+                    <section class="champ">
+                        <label for="edit_date">Date</label>
+                        <input type="date" id="edit_date" name="date">
+                    </section>
+
+                    <section class="hour_line">
+                        <section class="champ">
+                            <label for="edit_start">Start Time</label>
+                            <input type="time" id="edit_start" name="start" step="1800" required>
+                        </section>
+                        <section class="champ">
+                            <label for="edit_end">End Time</label>
+                            <input type="time" id="edit_end" name="end" step="1800" required>
+                        </section>
+                    </section>
+                </section>
+
+                <section class="champ">
+                    <label for="edit_description">Description</label>
+                    <textarea id="edit_description" name="description"></textarea>
+                </section>
+
+                <section class="boutons">
+                    <button type="button" class="cancel" id="cancel_popup_edit">Cancel</button>
+                    <button type="submit" class="save">Save Changes</button>
+                </section>
+
+                <p id="editErrorMessage"></p>
+            </form>
+        </div>
+    </div>
+
+        <!-- ********************************************** POPUP CREATE ********************************************** -->
+         
+    <div class="pop_up_background" id="popup_create">
+        <div class="pop_up_new_workshop">
+
+            <section class="create_workshop_header">
+                <h2>Create New Workshop</h2>
+                <button type="button" id="close_popup_create">X</button>
+            </section>
+
+            <form id="create_workshop_form">
+                <section class="champ">
+                    <label for="create_name">Name</label>
+                    <input type="text" id="create_name" name="name">
+                </section>
+
+                <section class="champ">
+                    <label for="create_category">Category</label>
+                    <select id="create_category" name="category"></select>
+                </section>
+
+                <section class="champ">
+                    <label for="create_capacity">Max Capacity</label>
+                    <input type="number" id="create_capacity" name="capacity" value="20">
+                </section>
+
+                <section class="ligne_date">
+                    <section class="champ">
+                        <label for="create_date">Date</label>
+                        <input type="date" id="create_date" name="date">
+                    </section>
+
+                    <section class="hour_line">
+                        <section class="champ">
+                            <label for="create_start">Start Time</label>
+                            <input type="time" id="create_start" name="start" value="10:00" step="1800" required>
+                        </section>
+                        <section class="champ">
+                            <label for="create_end">End Time</label>
+                            <input type="time" id="create_end" name="end" value="11:30" step="1800" required>
+                        </section>
+                    </section>
+                </section>
+
+                <section class="champ">
+                    <label for="create_description">Description</label>
+                    <textarea id="create_description" name="description"></textarea>
+                </section>
+
+                <section class="boutons">
+                    <button type="button" class="cancel" id="cancel_popup_create">Cancel</button>
+                    <button type="submit" class="save">Save</button>
+                </section>
+
+                <p id="createErrorMessage"></p>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

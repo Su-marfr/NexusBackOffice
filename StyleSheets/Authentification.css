@@ -40,7 +40,7 @@ input:focus {
     outline: none;
 }
 
-button {
+.buttonContinue {
     display: block;
     width: 335px;
     height: 100px;

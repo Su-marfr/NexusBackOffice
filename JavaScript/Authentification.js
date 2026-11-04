@@ -38,7 +38,7 @@ verificationForm.addEventListener("submit", async (event) => {
       localStorage.setItem("authToken", data.token);
     }
 
-    window.location.href = "WorkshopsMasterList.html";
+    window.location.href = "Views/WorkshopsMasterList.html";
 
   } catch (error) {
     if (error.message.includes("NetworkError") || error.name === "TypeError") {

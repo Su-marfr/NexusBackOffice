@@ -16,6 +16,10 @@ const createForm = document.querySelector("#create_workshop_form");
 const createErrorMessage = document.querySelector("#createErrorMessage");
 const createCategorySelect = document.querySelector("#create_category");
 
+const popupDelete = document.querySelector("#popup_delete");
+const cancelDeleteButton = document.querySelector("#cancel-button");
+const deleteButton = document.querySelector("#delete-button");
+
 let currentWorkshopId = null;
 
 function formatTime(isoString) {
@@ -53,7 +57,7 @@ function displayWorkshops(workshops) {
           <button class="icon-button edit-button" type="button">
             <img src="../Images/pencil.svg" alt="Pencil">
           </button>
-          <button class="icon-button delete-button" type="button">
+          <button class="icon-button trash-icon-button" type="button">
             <img src="../Images/trash.svg" alt="Trash">
           </button>
         </div>
@@ -65,9 +69,10 @@ function displayWorkshops(workshops) {
       openEditPopup(workshop.id);
     });
 
-    const deleteButton = row.querySelector(".delete-button");
-    deleteButton.addEventListener("click", () => {
-      console.log("Delete Workshop clicked!", workshop.id);
+    const deleteWorkshopButton = row.querySelector(".trash-icon-button");
+    deleteWorkshopButton.addEventListener("click", () => {
+      currentWorkshopId = workshop.id;
+      popupDelete.classList.add("ouvert");
     });
 
     tableBody.appendChild(row);
@@ -288,6 +293,46 @@ editForm.addEventListener("submit", async (e) => {
     } else {
       editErrorMessage.textContent = error.message;
     }
+  }
+});
+
+cancelDeleteButton.addEventListener("click", () => {
+    popupDelete.classList.remove("ouvert");
+});
+
+deleteButton.addEventListener("click", async () => {
+  if (currentWorkshopId === null) {
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("authToken");
+    const response = await fetch(`http://localhost:8080/workshops/${currentWorkshopId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+       }
+      });
+
+      if (!response.ok) {
+        throw new Error (`Erreur HTTP : ${response.status}`);
+      }
+
+      popupDelete.classList.remove("ouvert");
+
+      currentWorkshopId = null;
+
+      loadWorkshops();
+
+  } catch (error) {
+      const deleteErrorMessage = document.querySelector("#deleteErrorMessage");
+
+      if (error.name === "TypeError") {
+        deleteErrorMessage.textContent = "Unable to connect to the server";
+      } else {
+        deleteErrorMessage.textContent = error.message;
+      }
   }
 });
 

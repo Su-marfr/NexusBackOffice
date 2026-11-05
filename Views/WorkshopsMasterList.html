@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../StyleSheets/UpdateWorkshop.css" />
     <link rel="stylesheet" href="../StyleSheets/CreateWorkshop.css" />
     <link rel="stylesheet" href="../StyleSheets/DeleteWorkshop.css" />
+    <link rel="stylesheet" href="../StyleSheets/Attendees.css" />
 
     <script src="../JavaScript/WorkshopsMasterList.js" defer></script>
 </head>
@@ -60,63 +61,92 @@
             </section>
 
             <section class="onglets">
-                <button type="button" class="onglet onglet_actif">Information</button>
-                <button type="button" class="onglet">Attendees</button>
+                <button type="button" class="onglet onglet_actif" id="information-tab">Information</button>
+                <button type="button" class="onglet" id="attendees-tab">Attendees</button>
             </section>
 
-            <form class="edit_workshop_form" id="edit_workshop_form">
-                <section class="champ">
-                    <label for="edit_name">Title</label>
-                    <input type="text" id="edit_name" name="title">
-                </section>
-
-                <section class="ligne_categorie">
+            <section id="information-content">
+                <form class="edit_workshop_form" id="edit_workshop_form">
                     <section class="champ">
-                        <label for="edit_category">Category</label>
-                        <select id="edit_category" name="category"></select>
+                        <label for="edit_name">Title</label>
+                        <input type="text" id="edit_name" name="title">
                     </section>
 
-                    <section class="champ">
-                        <label for="edit_capacity">Max Capacity</label>
-                        <input type="number" id="edit_capacity" name="capacity">
-                    </section>
-                </section>
-
-                <section class="ligne_date">
-                    <section class="champ">
-                        <label for="edit_date">Date</label>
-                        <input type="date" id="edit_date" name="date">
-                    </section>
-
-                    <section class="hour_line">
+                    <section class="ligne_categorie">
                         <section class="champ">
-                            <label for="edit_start">Start Time</label>
-                            <input type="time" id="edit_start" name="start" step="1800" required>
+                            <label for="edit_category">Category</label>
+                            <select id="edit_category" name="category"></select>
                         </section>
+
                         <section class="champ">
-                            <label for="edit_end">End Time</label>
-                            <input type="time" id="edit_end" name="end" step="1800" required>
+                            <label for="edit_capacity">Max Capacity</label>
+                            <input type="number" id="edit_capacity" name="capacity">
                         </section>
                     </section>
-                </section>
 
-                <section class="champ">
-                    <label for="edit_description">Description</label>
-                    <textarea id="edit_description" name="description"></textarea>
-                </section>
+                    <section class="ligne_date">
+                        <section class="champ">
+                            <label for="edit_date">Date</label>
+                            <input type="date" id="edit_date" name="date">
+                        </section>
 
-                <section class="boutons">
-                    <button type="button" class="cancel" id="cancel_popup_edit">Cancel</button>
-                    <button type="submit" class="save">Save Changes</button>
-                </section>
+                        <section class="hour_line">
+                            <section class="champ">
+                                <label for="edit_start">Start Time</label>
+                                <input type="time" id="edit_start" name="start" step="1800" required>
+                            </section>
+                            <section class="champ">
+                                <label for="edit_end">End Time</label>
+                                <input type="time" id="edit_end" name="end" step="1800" required>
+                            </section>
+                        </section>
+                    </section>
 
-                <p id="editErrorMessage"></p>
-            </form>
+                    <section class="champ">
+                        <label for="edit_description">Description</label>
+                        <textarea id="edit_description" name="description"></textarea>
+                    </section>
+
+                    <section class="boutons">
+                        <button type="button" class="cancel" id="cancel_popup_edit">Cancel</button>
+                        <button type="submit" class="save">Save Changes</button>
+                    </section>
+
+                    <p id="editErrorMessage"></p>
+                </form>
+            </section>
+
+            <section id="attendees-content" hidden>
+
+                <h3 class="registered-title" id="registered-title">
+                    Registered attendees (0/20)
+                </h3>
+
+                <div class="progress-background">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+
+                <table class="attendees-table">
+
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="attendees-list">
+                    </tbody>
+
+                </table>
+
+            </section>
         </div>
     </div>
 
-        <!-- ********************************************** POPUP CREATE ********************************************** -->
-         
+    <!-- ********************************************** POPUP CREATE ********************************************** -->
+
     <div class="pop_up_background" id="popup_create">
         <div class="pop_up_new_workshop">
 
@@ -175,7 +205,7 @@
     </div>
 
 
- <!-- ********************************************** POPUP Delete ********************************************** -->
+    <!-- ********************************************** POPUP Delete ********************************************** -->
 
     <div class="pop_up_delete_background" id="popup_delete">
 
@@ -183,7 +213,7 @@
 
             <section class="delete-header-container">
 
-               <img src="../Images/alertTriangle.svg" alt="Warning">
+                <img src="../Images/alertTriangle.svg" alt="Warning">
 
                 <h2>Delete Workshop?</h2>
 
@@ -196,7 +226,7 @@
                 </p>
 
                 <p class="delete-description">
-                    All workshop data and participant reservations will be deleted. 
+                    All workshop data and participant reservations will be deleted.
                     <br>
                     This action cannot be undone.
                 </p>
@@ -220,6 +250,50 @@
         </section>
 
     </div>
+
+    <div class="delete-attendee-background" id="delete-attendee-popup">
+
+        <section class="delete-attendee-popup">
+
+            <header class="delete-attendee-header">
+
+                <img src="../Images/alertTriangle.svg" alt="Warning">
+
+                <h2>Remove participant?</h2>
+
+            </header>
+
+            <section class="delete-attendee-content">
+
+                <p class="delete-attendee-question" id="delete-attendee-question">
+                    Are you sure you want to remove this participant?
+                </p>
+
+                <p class="delete-attendee-description">
+                    This action will cancel their reservation and
+                    free up 1 slot for this session.
+                </p>
+
+            </section>
+
+            <div class="delete-attendee-buttons">
+
+                <button type="button" class="cancel-button" id="cancel-remove-attendee">
+                    Cancel
+                </button>
+
+                <button type="button" class="remove-button" id="confirm-remove-attendee">
+                    Yes, Remove
+                </button>
+
+            </div>
+
+            <p id="delete-attendee-error"></p>
+
+        </section>
+
+    </div>
+
 </body>
 
 </html>

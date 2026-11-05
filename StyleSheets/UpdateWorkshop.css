@@ -33,6 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .pop_up_edit_workshop .edit_workshop_header button {
@@ -49,7 +50,8 @@
 
 .pop_up_edit_workshop .onglet {
     width: 45%;
-    padding: 8px 0;
+    padding: 10px 0;
+    font-size: 14px;
     border: none;
     border-radius: 24px;
     background-color: #ececf2;
@@ -71,14 +73,28 @@
 .pop_up_edit_workshop label {
     cursor: pointer;
     margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.pop_up_edit_workshop input,
+.pop_up_edit_workshop select,
+.pop_up_edit_workshop textarea,
+.pop_up_edit_workshop label,
+.pop_up_edit_workshop button {
+    font-family: inherit;
+    box-sizing: border-box;
 }
 
 .pop_up_edit_workshop input,
 .pop_up_edit_workshop select,
 .pop_up_edit_workshop textarea {
     padding: 6px 10px;
+    font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 12px;
+    width: 100%;
 }
 
 .pop_up_edit_workshop textarea {
@@ -91,23 +107,33 @@
 }
 
 .pop_up_edit_workshop .ligne_date {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
 }
 
 .pop_up_edit_workshop .hour_line {
-    display: flex;
-    gap: 8px;
+    display: contents; 
+}
+
+.pop_up_edit_workshop input[type="time"],
+.pop_up_edit_workshop input[type="date"] {
+    padding: 6px 4px;
+    font-size: 13px;
+    width: 100%;
 }
 
 .pop_up_edit_workshop .boutons {
     display: flex;
     justify-content: space-between;
+    margin-top: 16px;
 }
 
 .pop_up_edit_workshop .boutons button {
     width: 45%;
     padding: 12px 0;
+    font-size: 14px;
     border: none;
     border-radius: 24px;
     font-weight: bold;

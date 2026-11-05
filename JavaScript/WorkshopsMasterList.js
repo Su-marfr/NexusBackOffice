@@ -20,7 +20,29 @@ const popupDelete = document.querySelector("#popup_delete");
 const cancelDeleteButton = document.querySelector("#cancel-button");
 const deleteButton = document.querySelector("#delete-button");
 
+const informationTab = document.querySelector("#information-tab");
+const attendeesTab = document.querySelector("#attendees-tab");
+
+const informationContent = document.querySelector("#information-content");
+const attendeesContent = document.querySelector("#attendees-content");
+
+const attendeesList = document.querySelector("#attendees-list");
+const registeredTitle = document.querySelector("#registered-title");
+const progressFill = document.querySelector("#progress-fill");
+
+// Pop-up attendees deletion
+const popupDeleteAttendee = document.querySelector("#delete-attendee-popup");
+const deleteAttendeeQuestion = document.querySelector("#delete-attendee-question");
+const cancelRemoveAttendeeButton = document.querySelector("#cancel-remove-attendee");
+const confirmRemoveAttendeeButton = document.querySelector("#confirm-remove-attendee");
+
+let selectedReservationId = null;
+
 let currentWorkshopId = null;
+let currentCapacityMax = 0;
+let attendees = [];
+
+const capacityMax = 20;
 
 function formatTime(isoString) {
   const date = new Date(isoString);
@@ -197,9 +219,17 @@ createForm.addEventListener("submit", async (e) => {
   }
 });
 
+
+
 async function openEditPopup(id) {
   listErrorMessage.textContent = "";
   editErrorMessage.textContent = "";
+
+  attendees = [];
+  informationContent.hidden = false;
+  attendeesContent.hidden = true;
+  informationTab.classList.add("onglet_actif");
+  attendeesTab.classList.remove("onglet_actif");
 
   try {
     const token = localStorage.getItem("authToken");
@@ -213,6 +243,7 @@ async function openEditPopup(id) {
 
     const workshop = await response.json();
     currentWorkshopId = workshop.id;
+    currentCapacityMax = workshop.capacityMax;
 
     const start = new Date(workshop.startTime);
     const end = new Date(workshop.endTime);
@@ -297,7 +328,7 @@ editForm.addEventListener("submit", async (e) => {
 });
 
 cancelDeleteButton.addEventListener("click", () => {
-    popupDelete.classList.remove("ouvert");
+  popupDelete.classList.remove("ouvert");
 });
 
 deleteButton.addEventListener("click", async () => {
@@ -312,27 +343,171 @@ deleteButton.addEventListener("click", async () => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
-       }
-      });
-
-      if (!response.ok) {
-        throw new Error (`Erreur HTTP : ${response.status}`);
       }
+    });
 
-      popupDelete.classList.remove("ouvert");
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
 
-      currentWorkshopId = null;
+    popupDelete.classList.remove("ouvert");
 
-      loadWorkshops();
+    currentWorkshopId = null;
+
+    loadWorkshops();
 
   } catch (error) {
-      const deleteErrorMessage = document.querySelector("#deleteErrorMessage");
+    const deleteErrorMessage = document.querySelector("#deleteErrorMessage");
 
-      if (error.name === "TypeError") {
-        deleteErrorMessage.textContent = "Unable to connect to the server";
-      } else {
-        deleteErrorMessage.textContent = error.message;
+    if (error.name === "TypeError") {
+      deleteErrorMessage.textContent = "Unable to connect to the server";
+    } else {
+      deleteErrorMessage.textContent = error.message;
+    }
+  }
+});
+
+informationTab.addEventListener("click", () => {
+
+  informationContent.hidden = false;
+  attendeesContent.hidden = true;
+
+  informationTab.classList.add("onglet_actif");
+  attendeesTab.classList.remove("onglet_actif");
+
+});
+
+attendeesTab.addEventListener("click", () => {
+
+  informationContent.hidden = true;
+  attendeesContent.hidden = false;
+
+  attendeesTab.classList.add("onglet_actif");
+  informationTab.classList.remove("onglet_actif");
+
+  if (currentWorkshopId !== null) {
+    loadAttendees(currentWorkshopId);
+  }
+
+});
+
+async function loadAttendees(workshopID) {
+  try {
+    const token = localStorage.getItem("authToken");
+    const response = await fetch(`http://localhost:8080/reservations/workshops/${workshopID}/attendees`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
       }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    attendees = data.filter(item => item.status === "validated");
+
+    displayAttendees();
+
+  } catch (error) {
+    console.error("Erreur lors du chargement des participants :", error);
+    attendees = [];
+    displayAttendees();
+  }
+}
+
+
+function displayAttendees() {
+
+  attendeesList.innerHTML = "";
+
+  const registered = attendees.length;
+
+  registeredTitle.textContent =
+    `Registered attendees (${registered}/${currentCapacityMax})`;
+
+  const percentage = currentCapacityMax > 0 ? (registered / currentCapacityMax) * 100 : 0;
+
+  progressFill.style.width = percentage + "%";
+
+
+  for (const attendee of attendees) {
+
+    const row = document.createElement("tr");
+
+    const fullName = document.createElement("td");
+
+    fullName.textContent = attendee.name;
+
+    const email = document.createElement("td");
+
+    email.textContent = attendee.email;
+
+    const actions = document.createElement("td");
+
+    const deleteButton = document.createElement("button");
+
+    deleteButton.type = "button";
+    deleteButton.classList.add("remove-attendee-button");
+
+    const image = document.createElement("img");
+    image.src = "../Images/trash.svg";
+    image.alt = "Delete";
+
+    deleteButton.appendChild(image);
+    actions.appendChild(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      selectedReservationId = attendee.reservationID;
+      deleteAttendeeQuestion.textContent = `Are you sure you want to remove ${attendee.name} (${attendee.email}) from this workshop?`;
+      popupDeleteAttendee.classList.add("ouvert");
+    });
+
+    row.appendChild(fullName);
+    row.appendChild(email);
+    row.appendChild(actions);
+
+    attendeesList.appendChild(row);
+  }
+}
+
+// Cancel
+cancelRemoveAttendeeButton.addEventListener("click", () => {
+  popupDeleteAttendee.classList.remove("ouvert");
+  selectedReservationId = null;
+});
+
+// Yes, Remove
+confirmRemoveAttendeeButton.addEventListener("click", async () => {
+  if (selectedReservationId === null) return;
+
+  try {
+    const token = localStorage.getItem("authToken");
+
+    const response = await fetch(`http://localhost:8080/reservations/${selectedReservationId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+
+    popupDeleteAttendee.classList.remove("ouvert");
+    selectedReservationId = null;
+
+    loadAttendees(currentWorkshopId);
+
+    loadWorkshops();
+
+  } catch (error) {
+    const deleteAttendeeError = document.querySelector("#delete-attendee-error");
+    if (deleteAttendeeError) {
+      deleteAttendeeError.textContent = "Impossible de supprimer le participant.";
+    }
   }
 });
 

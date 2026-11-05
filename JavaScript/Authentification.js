@@ -33,9 +33,9 @@ verificationForm.addEventListener("submit", async (event) => {
     }
 
     const data = await response.json();
-    
-    if (data.token) {
-      localStorage.setItem("authToken", data.token);
+
+    if (!data.token || data.role !== "staff") {
+      throw new Error("Accès réservé au staff.");
     }
 
     window.location.href = "Views/WorkshopsMasterList.html";

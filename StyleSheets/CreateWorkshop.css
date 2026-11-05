@@ -16,13 +16,16 @@
     display: flex;
 }
 
+.pop_up_new_workshop h2 {
+    font-size: 24px;
+}
 .pop_up_new_workshop {
     position: relative;
     z-index: 2;
-    width: 35vw;
+    width: 40vw;
     padding: 20px 24px;
     background-color: white;
-    box-shadow: 0px 0px 15px 0px #000000;
+    box-shadow: 0px 0px 4px 0px #000000;
     color: #261854;
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -33,6 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 30px;
 }
 
 .pop_up_new_workshop .create_workshop_header button {

@@ -1,0 +1,173 @@
+
+.registered-title{
+    font-size: 15px;
+    font-weight: 600;
+    color: #261854;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.progress-background {
+    width: 100%;
+    height: 20px;
+    background-color: #DFE1E5;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #9cfb9c;
+    transition: width 0.3s ease;
+}
+
+.attendees-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.attendees-table th {
+    color: #261854;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 5px;
+}
+
+.attendees-table td {
+    padding: 8px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #261854;
+    text-align: left;
+}
+
+/* FullName */
+.attendees-table th:first-child,
+.attendees-table td:first-child {
+   min-width: 180px;
+}
+
+/* Email address*/
+.attendees-table th:nth-child(2),
+.attendees-table td:nth-child(2) {
+    width: 55%;
+}
+
+/* TrashIcon */
+.attendees-table th:last-child,
+.attendees-table td:last-child {
+    width: 10%;
+    text-align: center;
+}
+
+
+.remove-attendee-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.remove-attendee-button img {
+    width: 15px;
+    height: 15px;
+}
+
+.delete-attendee-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #edebf383;
+    backdrop-filter: blur(2px);
+
+    z-index: 10;
+}
+
+.delete-attendee-background.ouvert {
+    display: flex;
+}
+
+.delete-attendee-popup {
+    width: 35vw;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.delete-attendee-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.delete-attendee-header img {
+    width: 30px;
+    height: 30px;
+}
+
+.delete-attendee-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delete-attendee-content {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.delete-attendee-question {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.delete-attendee-description {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.delete-attendee-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.delete-attendee-buttons button {
+    width: 50%;
+    padding: 13px;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-attendee-buttons .cancel-button {
+    background-color: #DFE1E5;
+    color: #727272;
+}
+
+.delete-attendee-buttons .cancel-button:hover {
+    background-color: #d5d4d4;
+}
+
+.delete-attendee-buttons .remove-button {
+    background-color: #E53935;
+    color: white;
+}
+
+.delete-attendee-buttons .remove-button:hover {
+    background-color: #B71C1C;
+}

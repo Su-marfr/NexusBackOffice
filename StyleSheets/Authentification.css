@@ -13,7 +13,7 @@ body {
 
 section {
     margin-bottom: 35px;
-    
+
 }
 
 label {
@@ -40,7 +40,7 @@ input:focus {
     outline: none;
 }
 
-button {
+.buttonContinue {
     display: block;
     width: 335px;
     height: 100px;
@@ -48,6 +48,12 @@ button {
     border-radius: 32px;
     border: none;
     margin: auto;
+}
+
+#errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
 }
 
 h1 {
@@ -75,5 +81,5 @@ h2 {
 }
 
 .buttonContinue h2 {
-color: #ffffff;
+    color: #ffffff;
 }

@@ -136,6 +136,12 @@ function fillSelect(select, categories) {
 async function loadCategories() {
   try {
     const token = localStorage.getItem("authToken");
+
+   if (!token) {
+      window.location.href = "../Authentification.html"; 
+      return;
+    }
+
     const response = await fetch("http://localhost:8080/categories", {
       headers: { "Authorization": `Bearer ${token}` }
     });
@@ -148,6 +154,7 @@ async function loadCategories() {
     fillSelect(editCategorySelect, categories);
     fillSelect(createCategorySelect, categories);
   } catch (error) {
+    console.error("Erreur détaillée categories:", error);
     listErrorMessage.textContent = "Impossible de charger les catégories";
   }
 }

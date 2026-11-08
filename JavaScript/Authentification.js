@@ -35,7 +35,7 @@ verificationForm.addEventListener("submit", async (event) => {
     const data = await response.json();
 
     if (!data.token || data.role !== "staff") {
-      throw new Error("Accès réservé au staff.");
+      throw new Error("Staff-only access");
     }
 
     localStorage.setItem("authToken", data.token);

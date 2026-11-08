@@ -38,6 +38,8 @@ verificationForm.addEventListener("submit", async (event) => {
       throw new Error("Accès réservé au staff.");
     }
 
+    localStorage.setItem("authToken", data.token);
+
     window.location.href = "Views/WorkshopsMasterList.html";
 
   } catch (error) {
